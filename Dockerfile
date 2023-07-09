@@ -1,6 +1,6 @@
 FROM        --platform=$TARGETOS/$TARGETARCH debian:buster-slim
 
-LABEL       author="SwitchAlpha" maintainer="help@switchalpha.dev"
+LABEL       author="Michael Parker" maintainer="parker@pterodactyl.io"
 
 LABEL       org.opencontainers.image.source="https://github.com/pterodactyl/yolks"
 LABEL       org.opencontainers.image.licenses=MIT
@@ -11,13 +11,7 @@ RUN         apt update && apt upgrade -y \
     			liblua5.3 libz-dev rapidjson-dev \
 				&& update-locale lang=en_US.UTF-8 \
 				&& dpkg-reconfigure --frontend noninteractive locales \
-				&& useradd -m -d /home/container -s /bin/bash container \
-                && mkdir -p /home/container/ \
-                && wget https://github.com/JustArchiNET/ArchiSteamFarm/releases/latest/download/ASF-linux-arm64.zip \
-                && unzip ASF-linux-arm64.zip \
-                && rm ASF-linux-arm64.zip \
-                && chmod +x ArchiSteamFarm
-
+				&& useradd -m -d /home/container -s /bin/bash container
 
 USER        container
 ENV         USER=container HOME=/home/container
