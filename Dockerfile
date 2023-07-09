@@ -12,12 +12,11 @@ RUN         apt update && apt upgrade -y \
 				&& update-locale lang=en_US.UTF-8 \
 				&& dpkg-reconfigure --frontend noninteractive locales \
 				&& useradd -m -d /home/container -s /bin/bash container \
-                # install https://github.com/JustArchiNET/ArchiSteamFarm/releases/download/5.4.7.3/ASF-linux-arm64.zip and unzip it
+                && mkdir -p /home/container/ \
                 && wget https://github.com/JustArchiNET/ArchiSteamFarm/releases/latest/download/ASF-linux-arm64.zip \
                 && unzip ASF-linux-arm64.zip \
                 && rm ASF-linux-arm64.zip \
-                && chmod +x ArchiSteamFarm \
-                && mv ArchiSteamFarm /home/container/ArchiSteamFarm
+                && chmod +x ArchiSteamFarm
 
 
 USER        container
